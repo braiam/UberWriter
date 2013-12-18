@@ -125,8 +125,6 @@ class InstallAndUpdateDataDirectory(DistUtilsExtra.auto.install_auto):
                   '__version__': "'%s'" % self.distribution.get_version()}
         update_config(self.install_lib, values)
 
-        desktop_file = move_desktop_file(self.root, target_data, self.prefix)
-        update_desktop_file(desktop_file, target_pkgdata, target_scripts)
         compile_schemas(self.root, target_data)
 
         
@@ -159,7 +157,4 @@ DistUtilsExtra.auto.setup(
         "uberwriter_lib",
         "uberwriter"
     ],
-    package_data={
-            'pylocales' : ['locales.db']
-            }
     )

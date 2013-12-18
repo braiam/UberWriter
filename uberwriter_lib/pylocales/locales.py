@@ -38,20 +38,8 @@ __all__ = ['Country', 'Language', 'LanguageNotFound',
 _translator_language = gettext.translation('iso_639', fallback=True).gettext
 _translator_country = gettext.translation('iso_3166', fallback=True).gettext
 
-# Decides where the database is located. If an application provides an
-# os.path.get_module_path monkey patch to determine the path where the module
-# is located it uses this. If not it searches in the directory of this source
-# code file.
-__path__ = None
-if hasattr(os.path, 'get_module_path'):
-    __path__ = os.path.get_module_path(__file__)
-    if not os.path.isfile(os.path.join(__path__, 'locales.db')):
-        __path__ = None
-if __path__ is None:
-    __path__ = os.path.abspath(os.path.realpath(os.path.dirname(__file__)))
-
 # Loading the Database
-_database = sqlite3.connect(os.path.join(__path__, 'locales.db'))
+_database = sqlite3.connect('/usr/share/uberwriter/locales.db')
 
 logger = logging.getLogger(__name__)
 
